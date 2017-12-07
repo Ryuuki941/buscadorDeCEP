@@ -4,6 +4,22 @@ import './App.css';
 import Header from './components/Header/Header'
 import Buttons from './components/Buttons/Buttons'
 import Content from './components/Content/Content'
+import {List, ListItem} from 'material-ui/List';
+import ContentInbox from 'material-ui/svg-icons/content/inbox';
+import ActionGrade from 'material-ui/svg-icons/action/grade';
+import ContentSend from 'material-ui/svg-icons/content/send';
+import ContentDrafts from 'material-ui/svg-icons/content/drafts';
+import Divider from 'material-ui/Divider';
+import ActionInfo from 'material-ui/svg-icons/action/info';
+import Paper from 'material-ui/Paper';
+
+
+const style = {
+  width: '60%',
+  margin: 20,
+  textAlign: 'center',
+  display: 'inline-block',
+};
 
 class App extends Component {
   constructor(props) {
@@ -33,17 +49,26 @@ onChange = ev => {
        <Header/>
        <Buttons
           enderecos={enderecos}
-          inputCep={inputCep}
-          onChange={this.onChange}
-          addEnd={this.addEnd}
-          delEnd={this.delEnd}
+          // inputCep={inputCep}
+          // onChange={this.onChange}
+          // addEnd={this.addEnd}
+          // delEnd={this.delEnd}
           // realTime={this.realTime}
       />{console.log("estou no app1")}
-      <Content
-         enderecos={['enderecos', 'oi', 'cale']}
+      {/* <Content
+         enderecos={enderecos}
          onChange={this.onChange}
         //  realTime={this.realTime}
-         /> {console.log("estou no app")}
+         /> {console.log("estou no app")} */}
+         {/* <Paper style={style} zDepth={4}>
+                <List>
+                {console.log(enderecos)}
+                {console.log(typeof(enderecos))}
+                {enderecos.map((endereco, index) => (
+               <p  className="item" key={index}>{endereco.toString()}</p>))}
+                </List>
+                <Divider />
+            </Paper> */}
       </div>
     );
   }

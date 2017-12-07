@@ -38,7 +38,6 @@ class Header extends Component{
               <MenuItem onClick={this.handleClose}>Menu Item 2</MenuItem>
 
             </Drawer>
-            <Content enderecos = {['OI', 'hey']}/>
 
           </div>
         );

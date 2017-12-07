@@ -7,8 +7,9 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import ContentRemove from 'material-ui/svg-icons/content/clear';
 import { green300, red300 } from 'material-ui/styles/colors';
-
+import Content from '../Content/Content'
 import superagent from 'superagent';
+// import Feedback from '../Feedback/Feedback'
 
 
 
@@ -44,14 +45,22 @@ const customContentStyle = {
   width: '100%',
   maxWidth: 'none',
 };
- class createButtons extends React.Component {
-  state = {
-    open: false,
-    CEP: '',
-    enderecos:[],
-    realTime: true
-  };
 
+
+
+ class createButtons extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      open: false,
+      CEP: '',
+      enderecos:[],
+      // openFeedback: false,
+      realTime: true,
+
+    };
+  }
   conectar = () => {
     var CEP = this.state.CEP;
     var url = 'https://viacep.com.br/ws/' + CEP + '/json/'
@@ -80,7 +89,7 @@ const customContentStyle = {
                for(var i = 0; i < enderecos.length; i++){
                  console.log(i + " = " + enderecos[i]);
              }
-
+           
           }
           }
         )
@@ -96,6 +105,8 @@ const customContentStyle = {
   };
 
   handleCloseSearch = () => {
+
+
     this.setState({open: false});
     console.log(this.state.CEP)
     this.conectar();
@@ -110,7 +121,8 @@ const customContentStyle = {
   handleDelete = () => {
     const enderecos = this.state.enderecos.slice();
     this.setState({ enderecos: [] });
-    this.setState({open: false});
+    // this.setState({openFeedback: true});
+    // console.log('deleted')
   };
 
 
@@ -175,6 +187,7 @@ const customContentStyle = {
             iconStyle={ myStyle2 }
         >
             <ContentRemove />
+            {/* <Feedback openFeedback={this.state.openFeedback}/> */}
         </FloatingActionButton>
         <Dialog
           title="Procure por um CEP"
@@ -194,6 +207,7 @@ const customContentStyle = {
         }          
            />           
         </Dialog>
+        <Content enderecos={this.state.enderecos}/>
       </div>
     );
   }

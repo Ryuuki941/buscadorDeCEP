@@ -16,7 +16,7 @@ const style = {
   };
 
     const Content = props => {
-      const {enderecos, realTime} = props;
+      const {enderecos} = props;
         return(
             <Paper style={style} zDepth={4}>
                 <List>
