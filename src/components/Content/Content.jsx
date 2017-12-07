@@ -9,24 +9,25 @@ import ActionInfo from 'material-ui/svg-icons/action/info';
 import Paper from 'material-ui/Paper';
 
 const style = {
-    width: '60%',
-    margin: 20,
+    width: 'auto',
+    margin: 10,
     textAlign: 'center',
     display: 'inline-block',
   };
 
+
     const Content = props => {
       const {enderecos} = props;
         return(
-            <Paper style={style} zDepth={4}>
+            <div>
                 <List>
                 {console.log(enderecos)}
                 {console.log(typeof(enderecos))}
                 {enderecos.map((endereco, index) => (
-               <p  className="item" key={index}>{endereco.toString()}</p>))}
+               <Paper style={style} zDepth={3} className="item" key={index}>{endereco.toString()}</Paper>))}
                 </List>
-                <Divider />
-            </Paper>
+
+            </div>
         );
     }
 

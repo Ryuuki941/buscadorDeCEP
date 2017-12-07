@@ -6,18 +6,20 @@ import TextField from 'material-ui/TextField';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import ContentRemove from 'material-ui/svg-icons/content/clear';
-import { green300, red300 } from 'material-ui/styles/colors';
+import ContentCreate from 'material-ui/svg-icons/content/create';
+import { green300, red300, blue100 } from 'material-ui/styles/colors';
 import Content from '../Content/Content'
 import superagent from 'superagent';
 // import Feedback from '../Feedback/Feedback'
 
 
 
+
 const style1 = {
   margin: 0,
-  top: 70,
-  right: 20,
-  bottom: 'auto',
+  top: 'auto',
+  right: 120,
+  bottom: 20,
   left: 'auto',
   position: 'fixed',
 };
@@ -30,6 +32,14 @@ const style2 = {
     left: 'auto',
     position: 'fixed',
   };
+  const style3 = {
+    margin: 0,
+    top: 'auto',
+    right: 220,
+    bottom: 20,
+    left: 'auto',
+    position: 'fixed',
+  };
 
 const myStyle1 = {
     height: 80,
@@ -38,6 +48,10 @@ const myStyle1 = {
 const myStyle2 = {
     height: 80,
     width: 80,
+};
+const myStyle3 = {
+  height: 80,
+  width: 80,
 };
 
 
@@ -56,11 +70,13 @@ const customContentStyle = {
       open: false,
       CEP: '',
       enderecos:[],
+      selectedIndex: 0,
       // openFeedback: false,
       realTime: true,
 
     };
   }
+
   conectar = () => {
     var CEP = this.state.CEP;
     var url = 'https://viacep.com.br/ws/' + CEP + '/json/'
@@ -89,6 +105,7 @@ const customContentStyle = {
                for(var i = 0; i < enderecos.length; i++){
                  console.log(i + " = " + enderecos[i]);
              }
+             this.setState({open: false});
            
           }
           }
@@ -99,6 +116,7 @@ const customContentStyle = {
   
 };
   
+select = (index) => this.setState({selectedIndex: index});
  
   handleOpen = () => {
     this.setState({open: true});
@@ -125,7 +143,10 @@ const customContentStyle = {
     // console.log('deleted')
   };
 
-
+  handleNothing = () =>{
+    this.setState({open: false});
+    console.log('clicou')
+  }
   
   
 //   getCEP = CEP =>{
@@ -186,9 +207,19 @@ const customContentStyle = {
             backgroundColor= {red300}
             iconStyle={ myStyle2 }
         >
-            <ContentRemove />
-            {/* <Feedback openFeedback={this.state.openFeedback}/> */}
+        <ContentRemove />
         </FloatingActionButton>
+        {/* <FloatingActionButton 
+            id="refresh"
+            style={style3} 
+            onClick={this.handleNothing}
+            backgroundColor= {blue100}
+            iconStyle={ myStyle3 }
+        >
+            <ContentCreate />
+            {/* <Feedback openFeedback={this.state.openFeedback}/> */}
+        {/* </FloatingActionButton> */} 
+        
         <Dialog
           title="Procure por um CEP"
           actions={actions}
