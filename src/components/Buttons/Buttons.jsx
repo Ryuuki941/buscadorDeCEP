@@ -7,7 +7,9 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import ContentRemove from 'material-ui/svg-icons/content/clear';
 import { green300, red300 } from 'material-ui/styles/colors';
-import connect from '../Action/Connection'
+
+import superagent from 'superagent';
+
 
 
 const style1 = {
@@ -46,7 +48,47 @@ const customContentStyle = {
   state = {
     open: false,
     CEP: '',
+    enderecos:[],
   };
+
+  conectar = () => {
+    var CEP = this.state.CEP;
+    var url = 'https://viacep.com.br/ws/' + CEP + '/json/'
+    superagent.get(url).then(
+        
+          response => {
+           const enderecos = this.state.enderecos.slice();
+            if (response.status !== 200) {
+                window.alert('Looks like there was a problem. Status Code: ' +
+                response.status);
+                console.log(url,response,CEP) ;
+            }
+            console.log(response)
+            console.log(typeof(response))
+            
+              const { logradouro: rua, localidade: cidade, bairro} = response.body;
+              if(response.error == true){
+                  alert("CEP inválido");
+              }else{
+              const endereco = 'Endereco: ' + rua + ', ' + bairro + ', ' + cidade +'. CEP: ' + CEP;
+              console.log(endereco);
+              enderecos.push(endereco)
+              this.state.enderecos = enderecos
+              console.log('okay');
+
+              for(var i = 0; i < enderecos.length; i++){
+                console.log(i + " = " + enderecos[i]);
+            }
+
+          }
+          }
+        )
+        .catch(err => {
+            window.alert('Fetch Error :-S', err);
+        });
+  
+};
+  
  
   handleOpen = () => {
     this.setState({open: true});
@@ -54,8 +96,12 @@ const customContentStyle = {
 
   handleCloseSearch = () => {
     this.setState({open: false});
-    connect(this.state.CEP);
     console.log(this.state.CEP)
+    this.conectar();// retornando promisse
+
+     // alert( typeof(resultadoEndereco))
+    
+    //connect(this.state.CEP)
     this.setState({CEP: ''})
 
   };
@@ -63,17 +109,15 @@ const customContentStyle = {
     this.setState({open: false});
   };
 
+
+  
+  
 //   getCEP = CEP =>{
 //       this.setState({CEP: CEP});
 //       connect(CEP);
 //   }
 
   onChange = event => {
-    // event.preventDefault();
-    // const cep = Object.assign({}, this.state);
-
-    // cep[event.target.name] = event.target.value;
-
     if (event.target.value.length !== 8) {
       this.setState({ errorText: 'Digite apenas 8 Digitos ' })
     } 
@@ -148,7 +192,7 @@ const customContentStyle = {
       </div>
     );
   }
-
  }
+ 
 
 export default createButtons;
