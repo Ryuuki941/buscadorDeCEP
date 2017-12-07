@@ -1,18 +1,9 @@
 import AppBar from 'material-ui/AppBar';
 import React, { Component } from 'react';
 import Drawer from 'material-ui/Drawer';
-import Content from '../Content/Content'
 import MenuItem from 'material-ui/MenuItem';
-import RaisedButton from 'material-ui/RaisedButton';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
-
-
-
-
-const style = {
-    margin: 12,
-  };
 
 class Header extends Component{
     constructor(props) {

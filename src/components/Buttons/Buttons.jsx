@@ -1,13 +1,11 @@
 import React from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import ContentRemove from 'material-ui/svg-icons/content/clear';
-import ContentCreate from 'material-ui/svg-icons/content/create';
-import { green300, red300, blue100 } from 'material-ui/styles/colors';
+import { green300, red300 } from 'material-ui/styles/colors';
 import Content from '../Content/Content'
 import superagent from 'superagent';
 // import Feedback from '../Feedback/Feedback'
@@ -32,14 +30,7 @@ const style2 = {
     left: 'auto',
     position: 'fixed',
   };
-  const style3 = {
-    margin: 0,
-    top: 'auto',
-    right: 220,
-    bottom: 20,
-    left: 'auto',
-    position: 'fixed',
-  };
+
 
 const myStyle1 = {
     height: 80,
@@ -49,10 +40,7 @@ const myStyle2 = {
     height: 80,
     width: 80,
 };
-const myStyle3 = {
-  height: 80,
-  width: 80,
-};
+
 
 
 const customContentStyle = {
@@ -71,7 +59,7 @@ const customContentStyle = {
       CEP: '',
       enderecos:[],
       selectedIndex: 0,
-      // openFeedback: false,
+      isDisable: false,
       realTime: true,
 
     };
@@ -148,27 +136,22 @@ select = (index) => this.setState({selectedIndex: index});
     console.log('clicou')
   }
   
-  
-//   getCEP = CEP =>{
-//       this.setState({CEP: CEP});
-//       connect(CEP);
-//   }
-
   onChange = event => {
     if (event.target.value.length !== 8) {
       this.setState({ errorText: 'Digite apenas 8 Digitos ' })
+      this.state.isDisable = true
     } 
     else if (isNaN(event.target.value) === true) {
         this.setState({ errorText: 'Por favor coloque apenas numeros' })
-      //desabilitar o 'procure'
-    }else if (event.target.value.replace(/\s/g,"") === '') {
+        this.state.isDisable = true    
+      }else if (event.target.value.replace(/\s/g,"") === '') {
         this.setState({ errorText: 'Por favor coloque apenas numeros' })
-      //desabilitar o 'procure'
-    }else {
+        this.state.isDisable = true
+      }else {
       this.setState({ errorText: '' })
       this.setState({CEP: event.target.value})
-      //abilitar o 'procure'
-    }
+      this.state.isDisable = false
+      }
   }
  
 
@@ -185,6 +168,7 @@ select = (index) => this.setState({selectedIndex: index});
         className="Procure"      
         label="Procure"
         primary={true}
+        disabled={this.state.isDisable}
         onClick={this.handleCloseSearch}
       />, 
     ];
