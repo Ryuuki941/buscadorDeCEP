@@ -22,6 +22,8 @@ const style = {
                 <List>
                 {console.log(enderecos)}
                 {console.log(typeof(enderecos))}
+                {enderecos.map((endereco, index) => (
+               <p  className="item" key={index}>{endereco.toString()}</p>))}
                 </List>
                 <Divider />
             </Paper>
