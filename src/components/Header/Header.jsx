@@ -1,10 +1,13 @@
 import AppBar from 'material-ui/AppBar';
 import React, { Component } from 'react';
 import Drawer from 'material-ui/Drawer';
+import Content from '../Content/Content'
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
+
+
 
 
 const style = {
@@ -33,7 +36,9 @@ class Header extends Component{
             >
               <MenuItem onClick={this.handleClose}>Menu Item</MenuItem>
               <MenuItem onClick={this.handleClose}>Menu Item 2</MenuItem>
+
             </Drawer>
+            <Content enderecos = {['OI', 'hey']}/>
 
           </div>
         );

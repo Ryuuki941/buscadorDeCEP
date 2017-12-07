@@ -49,6 +49,7 @@ const customContentStyle = {
     open: false,
     CEP: '',
     enderecos:[],
+    realTime: true
   };
 
   conectar = () => {
@@ -71,14 +72,14 @@ const customContentStyle = {
                   alert("CEP inválido");
               }else{
               const endereco = 'Endereco: ' + rua + ', ' + bairro + ', ' + cidade +'. CEP: ' + CEP;
-            //   console.log(endereco);
+              console.log(endereco);
               enderecos.push(endereco)
               this.state.enderecos = enderecos
             //   console.log('okay');
 
-            //   for(var i = 0; i < enderecos.length; i++){
-            //     console.log(i + " = " + enderecos[i]);
-            // }
+               for(var i = 0; i < enderecos.length; i++){
+                 console.log(i + " = " + enderecos[i]);
+             }
 
           }
           }
@@ -97,15 +98,18 @@ const customContentStyle = {
   handleCloseSearch = () => {
     this.setState({open: false});
     console.log(this.state.CEP)
-    this.conectar();// retornando promisse
-
-     // alert( typeof(resultadoEndereco))
-    
-    //connect(this.state.CEP)
+    this.conectar();
     this.setState({CEP: ''})
+    this.setState({realTime: true})
 
   };
   handleCloseNormal = () => {
+    this.setState({open: false});
+  };
+
+  handleDelete = () => {
+    const enderecos = this.state.enderecos.slice();
+    this.setState({ enderecos: [] });
     this.setState({open: false});
   };
 
@@ -166,6 +170,7 @@ const customContentStyle = {
         <FloatingActionButton 
             id="delete"
             style={style2} 
+            onClick={this.handleDelete}
             backgroundColor= {red300}
             iconStyle={ myStyle2 }
         >
