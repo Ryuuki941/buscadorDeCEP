@@ -84,10 +84,15 @@ const customContentStyle = {
               if(erro == true){
                   alert("CEP inválido");
               }else{
-              const endereco = 'Endereco: ' + rua + ', ' + bairro + ', ' + cidade +'. CEP: ' + CEP;
-              console.log(endereco);
-              enderecos.push(endereco)
-              this.state.enderecos = enderecos
+                var endereco = '';
+                if(rua.length == 0 && bairro.length == 0) endereco = cidade;
+                else if(bairro.length == 0) endereco = rua + ', ' + cidade;
+                else if(rua.length == 0 ) endereco = bairro + ', ' + cidade;
+                else endereco = rua + ', ' + bairro + ', ' + cidade;
+                
+                const enderecoCompleto = 'Endereco: ' + endereco + '. CEP: ' + CEP;
+                enderecos.push(enderecoCompleto)
+                this.state.enderecos = enderecos
             //   console.log('okay');
 
                for(var i = 0; i < enderecos.length; i++){
