@@ -56,21 +56,17 @@ const customContentStyle = {
     this.setState({open: false});
     connect(this.state.CEP);
     console.log(this.state.CEP)
-    // doAPI().then(cep => {
-    //   console.log(cep);
-     // this.setState({ceps: [cep]})
-     // this.array.ceps.push(cep)
-    //})
+    this.setState({CEP: ''})
 
   };
   handleCloseNormal = () => {
     this.setState({open: false});
   };
 
-  getCEP = CEP =>{
-      this.setState({CEP: CEP});
-      connect(CEP);
-  }
+//   getCEP = CEP =>{
+//       this.setState({CEP: CEP});
+//       connect(CEP);
+//   }
 
   onChange = event => {
     // event.preventDefault();
