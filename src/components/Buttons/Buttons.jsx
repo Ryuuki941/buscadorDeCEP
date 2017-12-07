@@ -61,24 +61,24 @@ const customContentStyle = {
             if (response.status !== 200) {
                 window.alert('Looks like there was a problem. Status Code: ' +
                 response.status);
-                console.log(url,response,CEP) ;
+                // console.log(url,response,CEP) ;
             }
-            console.log(response)
-            console.log(typeof(response))
+            // console.log(response)
+            // console.log(typeof(response))
             
               const { logradouro: rua, localidade: cidade, bairro} = response.body;
               if(response.error == true){
                   alert("CEP inválido");
               }else{
               const endereco = 'Endereco: ' + rua + ', ' + bairro + ', ' + cidade +'. CEP: ' + CEP;
-              console.log(endereco);
+            //   console.log(endereco);
               enderecos.push(endereco)
               this.state.enderecos = enderecos
-              console.log('okay');
+            //   console.log('okay');
 
-              for(var i = 0; i < enderecos.length; i++){
-                console.log(i + " = " + enderecos[i]);
-            }
+            //   for(var i = 0; i < enderecos.length; i++){
+            //     console.log(i + " = " + enderecos[i]);
+            // }
 
           }
           }
