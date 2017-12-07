@@ -3,13 +3,12 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-//import Variable from '../Store/Variable';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import ContentRemove from 'material-ui/svg-icons/content/clear';
 import { green300, red300 } from 'material-ui/styles/colors';
-//import doAPI from '../Action/ConnAPI'
-//import doArray from '../Action/FetchCard'
+import connect from '../Action/Connection'
+
 
 const style1 = {
   margin: 0,
@@ -39,14 +38,14 @@ const myStyle2 = {
 };
 
 
-
 const customContentStyle = {
   width: '100%',
   maxWidth: 'none',
 };
- class SearchNAdd extends React.Component {
+ class createButtons extends React.Component {
   state = {
-    open: false
+    open: false,
+    CEP: '',
   };
  
   handleOpen = () => {
@@ -55,6 +54,8 @@ const customContentStyle = {
 
   handleCloseSearch = () => {
     this.setState({open: false});
+    connect(this.state.CEP);
+    console.log(this.state.CEP)
     // doAPI().then(cep => {
     //   console.log(cep);
      // this.setState({ceps: [cep]})
@@ -66,7 +67,17 @@ const customContentStyle = {
     this.setState({open: false});
   };
 
-  onChange(event) {
+  getCEP = CEP =>{
+      this.setState({CEP: CEP});
+      connect(CEP);
+  }
+
+  onChange = event => {
+    // event.preventDefault();
+    // const cep = Object.assign({}, this.state);
+
+    // cep[event.target.name] = event.target.value;
+
     if (event.target.value.length !== 8) {
       this.setState({ errorText: 'Digite apenas 8 Digitos ' })
     } 
@@ -78,10 +89,14 @@ const customContentStyle = {
       //desabilitar o 'procure'
     }else {
       this.setState({ errorText: '' })
+      this.setState({CEP: event.target.value})
       //abilitar o 'procure'
     }
   }
-  render() {
+ 
+
+
+  render = () => {
     const actions = [
       <FlatButton
         className="Cancelar"
@@ -93,9 +108,7 @@ const customContentStyle = {
         className="Procure"      
         label="Procure"
         primary={true}
-        onClick={this.handleCloseSearch
-      }
-        
+        onClick={this.handleCloseSearch}
       />, 
     ];
 
@@ -129,15 +142,17 @@ const customContentStyle = {
            id="CEP-value" 
            label="CEP" 
            floatingLabelText="Digite um CEP"
-           value = {this.textFieldValue} 
+        //    CEP = {this.textFieldValue}
+           value  = {this.textFieldValue} 
            errorText= {this.state.errorText}
-           onChange={this.onChange.bind(this)}          
+           onChange={this.onChange.bind(this)
+        }          
            />           
         </Dialog>
       </div>
     );
   }
 
-}
+ }
 
-export default SearchNAdd;
+export default createButtons;

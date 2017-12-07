@@ -21,7 +21,7 @@ class Header extends Component{
         return (
           <div className="App">
             <AppBar
-                title="Busca CEP!"
+                title="Buscaa CEP!"
                 iconClassNameRight="muidocs-icon-navigation-expand-more"
                 onLeftIconButtonClick={() => this.setState({open: !this.state.open})}
             />
