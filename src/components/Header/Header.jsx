@@ -5,17 +5,22 @@ import MenuItem from 'material-ui/MenuItem';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
+
 class Header extends Component{
     constructor(props) {
         super(props);
-        this.state = {open: false};
+        this.state = {
+          open: false,
+        };
       }
-    
+      handleClose = () =>{
+        window.alert("Not implemented yet!!");
+      }
        render() {
         return (
           <div className="App">
             <AppBar
-                title="Buscaaa CEP!"
+                title="Busca CEP!"
                 iconClassNameRight="muidocs-icon-navigation-expand-more"
                 onLeftIconButtonClick={() => this.setState({open: !this.state.open})}
             />
@@ -29,7 +34,6 @@ class Header extends Component{
                <MenuItem onClick={this.handleClose}>Menu Item 2</MenuItem>
 
             </Drawer>
-
           </div>
         );
       }

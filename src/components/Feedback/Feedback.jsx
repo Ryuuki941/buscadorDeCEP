@@ -3,27 +3,22 @@
 // import RaisedButton from 'material-ui/RaisedButton';
 
 
-// const state = () => {
-//     this.state = {
-//         openFeedback: false,
+// const feedback = (open,text) => {
+//     console.log(open)
+//     const state = {
+//         open: false,
 //     };
-// }
 
-// const feedback = props => {
-//      const {openFeedback} = props
-//     console.log(openFeedback)
-//     stateopenFeedback = openFeedback
+//     state.open = open
 
 //     const handleRequestClose = () => {
-//         this.setState({
-//           openFeedback: false,
-//         });
+//         state.open = false
 //       };
 //     return (
 //       <div>
 //         <Snackbar
-//           open={openFeedback}
-//           message="Os enderecos foram removidos com sucesso!"
+//           open={open}
+//           message="hello"
 //           autoHideDuration={5000}
 //           onRequestClose={handleRequestClose}
 //         />
