@@ -15,8 +15,8 @@ const connect = props => {
           console.log(response)
           console.log(typeof(response))
           
-            const { logradouro: rua, localidade: cidade, bairro} = response.body;
-            if(response.error == true){
+            const { logradouro: rua, localidade: cidade, bairro, erro} = response.body;
+            if(erro == true){
                 alert("CEP inválido");
             }else{
             const endereco = 'Endereco: ' + rua + ', ' + bairro + ', ' + cidade +'. CEP: ' + CEP;

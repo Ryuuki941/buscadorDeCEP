@@ -21,8 +21,8 @@ const style = {
         return(
             <div>
                 <List>
-                {console.log(enderecos)}
-                {console.log(typeof(enderecos))}
+                {/* {console.log(enderecos)}
+                {console.log(typeof(enderecos))} */}
                 {enderecos.map((endereco, index) => (
                <Paper style={style} zDepth={3} className="item" key={index}>{endereco.toString()}</Paper>))}
                 </List>

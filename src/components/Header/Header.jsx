@@ -24,7 +24,7 @@ class Header extends Component{
         return (
           <div className="App">
             <AppBar
-                title="Buscaa CEP!"
+                title="Buscaaa CEP!"
                 iconClassNameRight="muidocs-icon-navigation-expand-more"
                 onLeftIconButtonClick={() => this.setState({open: !this.state.open})}
             />
@@ -34,8 +34,8 @@ class Header extends Component{
               open={this.state.open}
               onRequestChange={(open) => this.setState({open})}
             >
-              <MenuItem onClick={this.handleClose}>Menu Item</MenuItem>
-              <MenuItem onClick={this.handleClose}>Menu Item 2</MenuItem>
+               <MenuItem onClick={this.handleClose}>Menu Item</MenuItem>
+               <MenuItem onClick={this.handleClose}>Menu Item 2</MenuItem>
 
             </Drawer>
 

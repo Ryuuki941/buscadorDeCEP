@@ -47,28 +47,9 @@ onChange = ev => {
     return (
       <div className="App">
        <Header/>
-       <Buttons
-          enderecos={enderecos}
-          // inputCep={inputCep}
-          // onChange={this.onChange}
-          // addEnd={this.addEnd}
-          // delEnd={this.delEnd}
-          // realTime={this.realTime}
-      />{console.log("estou no app1")}
-      {/* <Content
-         enderecos={enderecos}
-         onChange={this.onChange}
-        //  realTime={this.realTime}
-         /> {console.log("estou no app")} */}
-         {/* <Paper style={style} zDepth={4}>
-                <List>
-                {console.log(enderecos)}
-                {console.log(typeof(enderecos))}
-                {enderecos.map((endereco, index) => (
-               <p  className="item" key={index}>{endereco.toString()}</p>))}
-                </List>
-                <Divider />
-            </Paper> */}
+       <Buttons/>
+
+
       </div>
     );
   }
